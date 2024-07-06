@@ -1,0 +1,65 @@
+<section class="section" id="contact">
+    <div class="section__container">
+        <div class="contact-left">
+            <h1>Contact</h1>
+            <h2>Let’s Work Together</h2>
+            <p><a href="./home.html">Have any questions?</a> Feel free to get in touch with me 
+                and I’ll get back to get back to you as soon as possible !</p>
+            
+            <div class="side-bar">
+                <ul>
+                    <li><img src="/app/assets/logo/LinkedIn.png" alt="linkedIn" width="30px"></li>
+                    <li><img src="/app/assets/logo/TwitterX.png" alt="Twitter" width="30px"></li>
+                    <li><img src="/app/assets/logo/GitHub.png" alt="Github" width="30px"></li>
+                </ul>
+                <p>Follow Me</p>
+            </div>
+        </div>
+        <div class="container">
+            <div class="contact-form">
+                <form [formGroup]="contactForm" (ngSubmit)="onSave()">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" formControlName="name" id="name" name="name" placeholder="Enter Your Name">
+                        <div class="error-message" *ngIf="(submitted || contactForm.controls['name'].touched || contactForm.controls['name'].dirty)">
+                            <span *ngIf="contactForm.controls['name'].errors?.['required']">
+                                This is Required.
+                            </span>
+                            <span *ngIf="contactForm.controls['name'].errors?.['minlength']">
+                                Min Length should be 3 is Required.
+                            </span>
+                          </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" formControlName="email" id="email" name="email" placeholder="Enter Your Email">
+                        <div class="error-message" *ngIf="(submitted || contactForm.controls['email'].touched || contactForm.controls['email'].dirty) && contactForm.controls['email'].errors">
+                            <span *ngIf="contactForm.controls['email'].errors?.['required']">
+                                This is Required.
+                            </span>
+                            <span *ngIf="contactForm.controls['email'].errors?.['email']">
+                                Invalid Email Format.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <input type="text" formControlName="message" id="message" name="message" placeholder="Enter Message">
+                        <div class="error-message" *ngIf="(submitted || contactForm.controls['message'].touched || contactForm.controls['message'].dirty)">
+                            <span *ngIf="contactForm.controls['message'].errors?.['required']">
+                                This is Required.
+                            </span>
+                        </div>
+                    </div>
+                    <button type="submit" [disabled]="!contactForm.valid" [ngClass]="{'disabled-button': !contactForm.valid}">Send</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- 
+<div>
+    {{formValue | json}}
+</div> -->
